@@ -1,0 +1,82 @@
+==================================================================
+https://keybase.io/tesu
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://3edgy6u.com
+  * I am tesu (https://keybase.io/tesu) on keybase.
+  * I have a public key with fingerprint 25EF D056 D805 88CC 6216  8920 6E59 1A75 F576 19D4
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "010128a9f2dbc50a64ba2605838118e1f8a487a97710fbcc3ff0344f831af424941a0a",
+      "fingerprint": "25efd056d80588cc621689206e591a75f57619d4",
+      "host": "keybase.io",
+      "key_id": "6e591a75f57619d4",
+      "kid": "010128a9f2dbc50a64ba2605838118e1f8a487a97710fbcc3ff0344f831af424941a0a",
+      "uid": "77967e7c195165fa187b69a0d4dff819",
+      "username": "tesu"
+    },
+    "merkle_root": {
+      "ctime": 1511537989,
+      "hash_meta": "d7d7ed4724bd663ca4fdf3956f31ecb03fe9d8f94d84c37b76c237bea06d38ec",
+      "seqno": 1742704
+    },
+    "revoke": {
+      "sig_ids": [
+        "454f68e62696eb29199b812af6d786080fb9310164a9349fb0cec60e930f70c40f"
+      ]
+    },
+    "service": {
+      "hostname": "3edgy6u.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1511538013,
+  "expire_in": 157680000,
+  "prev": "f9d2d08e9591765e91fe43674326443252bf8f26b7ff6ad32e4e291a86ac2c86",
+  "seqno": 17,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.76
+Comment: https://keybase.io/crypto
+
+yMK3AnicrVNdaB1FFL5JjTaxUUMKLUjRrAVpCWH+dn4uVYMVH9QHK5aGanqZ3Tlz
+s7nJ3dvdzW3SEH9ildKqCCqFQB8KRYlQVCxFbYsSAg2Wqn1Q1ObFJpqG2iK0BKvY
+OhsqKPjoPMwwM9/5zne+mTPduqLQ0vD85I6nJn+4c7bh9NTOocL2tQ/0jnpBbEa8
+4qhXgeUFBgykWakSGa/oIYwwkVpZYoLQR5qzQBOOfEklxhKwlZpJoZUQGNkgDKm1
+iDJmJcXaMsIUwxppr9OzUbUMSS2JqpmjJT5Yg3xupKOSYcgJ5lIRxMFXWAvf+oJj
+ZZgL7IvTPMKJC3QKXVHsztymtCzvP/D/s+6hZTohFBcgQqx8zH2rsRQBVxoZZqyV
+WOXAFJKqHgSHziAd8sY6vUFIKgNQSuI4y40Nsyi/xj7GPhVKKlecTvtKg5BpF2WE
+EWCYICwwnNNQM2ssVT63FEMYIGpBGWkVM5KFVASCh8QtoBE3VELoNKSwsxq7DIIR
+gZhTkEA9rkCePI3KzrLUKz7jMZ9ZLoETrjgERGGlAomJttwIyZF0hijq/ONMK8qU
+DVAIIUegKLIChQxZr3csT5bUo3CZPH+jm7VTMOURPtQVxoNOUC2JsziMB9xFX5bV
+0mJuSzZSy5G7ICjd5CgFUdW4D+Ii6pCkUVx1RTjkvxyTCNNOD4ZrUQKlKEe4R5fI
+jTwP1B2lVYYYJEG5XyG4DwpbYJQLRglnbvJJYKUlPBDWcm0oAQaufi25Dkko+T8t
+dDp12XE646o6G0rAG5v6/NlbCg0thVubGvPOKbQ03/V3P32y/7YbPXy4f2LzG1tX
+7i3wu+/4uHypfe79turck6cW7910/m37zvwfW4060f/9qicOddSvXumeOfwrbPml
+sqLri9m3zrQ9Ss9/1HPmwmLHz/u6D79yrv346s3bYjLx3YFTl6+vbD/3aceLCw+1
+ztHPth96pM0cP9n35v1Ll73FdcHZL9de+319Y/ea9PEbr08vTV3/at1Pq3f3rz8R
+fLuNEO+eAx+8Zud+y0aOnR0fvXrtsQtFNt8kSve927OqON1x++mjlYuX9j9YnXwP
+TTYv7Nn4zUbond/wwqsHeeOPrePH0ofLTTteXvpw4ejsOJ2In55RzXTfkV0zJ+cP
+brjy9XNrXhre27jlz96xTRcHdu/5C0kefak=
+=QLLO
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/tesu
+
+==================================================================
+

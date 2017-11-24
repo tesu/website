@@ -126,6 +126,10 @@ def redirect_slug(slug):
         abort(404)
     return redirect(url_for('show_post', slug=slug))
 
+@app.route('/.well-known/keybase.txt')
+def keybase():
+    return app.send_static_file('keybase.txt')
+
 @app.errorhandler(403)
 @app.errorhandler(404)
 @app.errorhandler(405)
