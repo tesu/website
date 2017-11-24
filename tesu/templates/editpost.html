@@ -2,7 +2,7 @@
 {% block content %}
             <h1>Edit Post</h1>
             <section class="flex">
-                <form action={{ url_for('edit_post_endpoint') }} method=post>
+                <form action={{ url_for('edit_post', slug=post.slug) }} method=post>
                     <dl>
                         <dt><label for="title">Title</label>
                         <dd><input name="title" value="{{ post.title }}">
