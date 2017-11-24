@@ -94,7 +94,7 @@ def contact():
 
 @app.route('/misc/')
 def misc():
-    files = sorted(os.listdir(os.path.join(app.root_path, 'static/misc/')))
+    files = [x for x in sorted(os.listdir(os.path.join(app.root_path, 'static/misc/'))) if '.html' in x]
     return render_template('misc.html', api=get_api(), page='misc', files=files)
 
 @app.route('/misc/<file>')
