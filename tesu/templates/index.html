@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+            <h1>Blog</h1>
+            {% if not posts %}
+            Uh-oh, there are no posts!
+            {% endif %}
+            {% for post in posts %}
+            <article class=flex>
+                <div class=nierbox>
+                    <a class=title href="/blog/{{ post.slug }}"><h2>{{ post.title }}</h2>
+                        <span class=right>{{ post.timestamp|timestamp }}</span>
+                    </a>
+                    <div class=body>
+{{ post.text|truncate|markdown|safe }}
+                    {% if post.text|truncated %}
+                    <a class=readmore href="/blog/{{ post.slug }}">Read more</a>
+                    {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+            <div class=nierdialog>
+                {% if newer > -1 %}
+                <a id=newer class=right href="{{ url_for('index', page=newer) }}">Newer</a>
+                {% endif %}
+                {% if older > -1 %}
+                <a id=older class=right href="{{ url_for('index', page=older) }}">Older</a>
+                {% endif %}
+                <p>View more posts.</p>
+            </div>
+{% endblock %}

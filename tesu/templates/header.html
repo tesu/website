@@ -1,0 +1,14 @@
+        <header>
+            <input type=checkbox id=menu>
+            <label for=menu>Menu</label>
+            <nav>
+                <ul>
+                    <li{% if page=='index' %} class=selected{% endif %}><a href="{{ url_for('index') }}">Blog</a></li>
+                    <li{% if page=='projects' %} class=selected{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
+                    <li{% if page=='about' %} class=selected{% endif %}><a href="{{ url_for('about') }}">About</a></li>
+                    <li{% if page=='contact' %} class=selected{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li{% if page=='misc' %} class=selected{% endif %}><a href="{{ url_for('misc') }}">Misc</a></li>
+                </ul>
+            </nav>
+            <hr>
+        </header>

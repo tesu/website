@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+            <h1>Edit Post</h1>
+            <section class="flex">
+                <form action={{ url_for('edit_post_endpoint') }} method=post>
+                    <dl>
+                        <dt><label for="title">Title</label>
+                        <dd><input name="title" value="{{ post.title }}">
+                        <dt><label for="slug">Slug</label>
+                        <dd><input name="slug" value="{{ post.slug }}">
+                        <dt><label for="timestamp">Timestamp</label>
+                        <dd><input name="timestamp" value="{{ post.timestamp }}">
+                        <dt><label for="text">Body</label>
+                        <dd><textarea name="text" rows="30">{{ post.text }}</textarea>
+                        <input type="hidden" name="id" value="{{ post.id }}">
+                        <dd><input type="submit">
+                    </dl>
+                </form>
+            </section>
+{% endblock %}
+

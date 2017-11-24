@@ -1,0 +1,8 @@
+*.pyc
+*.pkl
+*.db
+tesu/settings.cfg
+tesu/scripts/
+tesu/static/misc/
+tesu/static/uploads/
+

@@ -1,0 +1,442 @@
+:root {
+    --bg: #c7c2aa;
+    --dark: #48453c;
+    --mid: #ada893;
+    --light: #d0cab2;
+    --shadow: #908d80;
+    --alert: #cd664d;
+}
+
+@font-face {
+    font-family: "SCE-PS3 Rodin LATIN";
+    src: url("fonts/SCE-PS3-RD-R-LATIN.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SCE-PS3 Rodin LATIN";
+    src: url("fonts/SCE-PS3-RD-B-LATIN.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SCE-PS3 Rodin LATIN";
+    src: url("fonts/SCE-PS3-RD-I-LATIN.woff2") format("woff2");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "SCE-PS3 Rodin LATIN";
+    src: url("fonts/SCE-PS3-RD-BI-LATIN.woff2") format("woff2");
+    font-weight: bold;
+    font-style: italic;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--dark);
+}
+
+::-webkit-scrollbar-button {
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--shadow);
+}
+
+@media screen and (max-width: 900px) {
+    aside {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    header {
+        padding: 0 0 10px 0 !important;
+    }
+    header label {
+        position: relative;
+        display: block !important;
+        width: 100%;
+        cursor: pointer;
+        user-select: none;
+        height: 48px;
+        background-color: var(--dark);
+        color: var(--light);
+        text-transform: uppercase;
+        padding: 12px 15px 15px 15px;
+    }
+    header label::before {
+        content: " ";
+        background-image: url(icons.png);
+        background-position: top -100% left -600%;
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin: 2px 5px 0 0;
+    }
+    header nav ul {
+        display: none;
+        margin: 0;
+        width: 100%;
+        height: 240px;
+    }
+    header li {
+        width: 100% !important;
+        height: 48px !important;
+    }
+    header li a {
+        height: 48px !important;
+        padding: 12px 15px 15px 15px !important;
+    }
+    header input:checked ~ nav ul {
+        display: block;
+    }
+    .nierdialog p {
+        visibility: hidden;
+        width: 0;
+        height: 22px;
+    }
+}
+
+@media print {
+    body * {
+        display: none !important;
+    }
+
+    body::before {
+        font-family: arial, helvetica, sans-serif;
+        content: ">printing websites in 2017";
+        background-color: #D6DAF0 !important;
+        color: #789922;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        color-adjust: exact;
+        padding: 2em;
+        line-height: 5em;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+body {
+    font-family: "SCE-PS3 Rodin LATIN", arial, sans-serif;
+    font-size: 16px;
+    background-color: var(--bg);
+    color: var(--dark);
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--alert);
+}
+
+a.readmore {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1em;
+    border-top: 2px solid var(--shadow);
+    color: var(--shadow);
+    margin: 1em 0 0 0;
+}
+
+a.readmore:hover {
+    color: var(--alert);
+}
+
+h1 {
+    text-shadow: 4px 5px var(--shadow);
+    letter-spacing: 3px;
+    margin-bottom: 1em;
+}
+
+h2, h3, h4, h5, h6 {
+    all: unset;
+}
+
+.indented {
+    text-indent: 4em;
+}
+
+blockquote {
+    border-left: 1em double var(--mid);
+    box-shadow: -.5em 0 var(--mid);
+    margin: .5em 0 .5em .5em;
+    padding: .5em 0 .5em 2em;
+}
+
+blockquote.timestamp {
+
+}
+
+header {
+    padding: 20px 0 10px 0;
+}
+
+header input[type=checkbox], header label {
+    display: none;
+}
+
+header ul {
+    list-style: none;
+    height: 28px;
+    width: 640px;
+    margin: 0 auto;
+    display: flex;
+}
+
+header li {
+    width: 120px;
+    background-color: var(--mid);
+    text-transform: uppercase;
+    margin-right: 10px;
+    transition: background-color 0.25s;
+}
+
+header li a {
+    display: block;
+    padding: 3px 5px 5px 5px;
+    color: var(--dark);
+    transition: color 0.25s;
+}
+
+header li:last-child {
+    margin-right: 0;
+}
+
+header li a::before {
+    content: ' ';
+    background-image: url(icons.png);
+    width: 18px;
+    height: 18px;
+    margin: 2px 5px 0 0;
+    float: left;
+}
+
+header li:nth-child(1) a::before {
+    background-position: top 0 left -300%;
+}
+
+header ul:not(:hover) li:nth-child(1).selected a::before, header li:nth-child(1):hover a::before {
+    background-position: top 100% left -300%;
+}
+
+header li:nth-child(2) a::before {
+    background-position: top 0 left 0;
+}
+
+header ul:not(:hover) li:nth-child(2).selected a::before, header li:nth-child(2):hover a::before {
+    background-position: top 100% left 0;
+}
+
+header li:nth-child(3) a::before {
+    background-position: top 0 left -400%;
+}
+
+header ul:not(:hover) li:nth-child(3).selected a::before, header li:nth-child(3):hover a::before {
+    background-position: top 100% left -400%;
+}
+
+header li:nth-child(4) a::before {
+    background-position: top 0 left -500%;
+}
+
+header ul:not(:hover) li:nth-child(4).selected a::before, header li:nth-child(4):hover a::before {
+    background-position: top 100% left -500%;
+}
+
+header li:nth-child(5) a::before {
+    background-position: top 0 left -100%;
+}
+
+header ul:not(:hover) li:nth-child(5).selected a::before, header li:nth-child(5):hover a::before {
+    background-position: top 100% left -100%;
+}
+
+header ul:not(:hover) li.selected, header li:hover {
+    background-color: var(--dark);
+    height: 38px;
+    transition: background-color 0.25s;
+}
+
+header ul:not(:hover) li.selected a, header li:hover a {
+    color: var(--light);
+    transition: color 0.25s;
+    height: 38px;
+}
+
+hr {
+    border: 1px solid var(--shadow);
+    margin: 1em 0 1em 0;
+}
+
+header hr, footer hr {
+    height: 20px;
+    width: 100vw;
+    transform: translateX(-50%);
+    border: 0;
+    border-top: 2px solid var(--dark);
+    background-image: url(hr.png);
+    background-size: auto 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+header hr {
+    margin: 10px 0 0 50%;
+}
+
+footer hr {
+    margin: 0 0 10px 50%;
+}
+
+aside {
+    float: right;
+    width: 300px;
+    margin: 0 30px;
+}
+
+main {
+    margin: 0 30px 1em 30px;
+}
+
+main ul {
+    margin-left: 1.5em;
+}
+
+main img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.nierdialog {
+    background-color: var(--light);
+    border-left: 1em double var(--dark);
+    box-shadow: -.5em 0 var(--dark), .25em .25em var(--shadow), -0.25em .25em var(--shadow);
+    margin: 0 0 0 .5em;
+    padding: 1em 1em 1em 2em;
+}
+
+.nierdialog::before {
+    content: ' ';
+    width: 12px;
+    height: 12px;
+    background-color: var(--dark);
+    display: block;
+    float: right;
+    margin: 18px -8px 0 8px;
+}
+
+.nierdialog a {
+    color: var(--dark);
+    margin: 0 0 0 2em;
+}
+
+.flex {
+    display: flex;
+}
+
+.nierbox {
+    width: 100%;
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+.title {
+    display: block;
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 5px 10px;
+}
+
+.body {
+    padding: 5px 10px;
+    background-color: var(--light);
+}
+
+ul.body {
+    padding: 5px 0;
+    margin-left: 0;
+    list-style: none;
+    white-space: nowrap;
+}
+
+ul.body li {
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ul.body li:hover {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+ul.body a {
+    display: block;
+}
+
+.left {
+    float: left;
+    vertical-align: bottom;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: calc(100% - 50px);
+}
+
+.right {
+    float: right;
+}
+
+#older::before, #newer::before {
+    height: 22px;
+    width: 22px;
+    border-radius: 11px;
+    background-color: var(--dark);
+    color: var(--light);
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 .25em 0 0;
+    line-height: 1.2;
+}
+
+#older::before {
+    content: '<';
+}
+
+#newer::before {
+    content: '>';
+}
+
+#older:hover, #newer:hover, #older:hover::before, #newer:hover::before {
+    color: var(--alert);
+}
+
+footer {
+    clear: both;
+}
+
+form, input, textarea {
+    font-family: monospace;
+    width: 100%
+}
+

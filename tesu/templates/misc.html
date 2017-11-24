@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+            <h1>/misc/</h1>
+            <section class=flex>
+                <div class=nierbox>
+                    <h2 class=title>Files</h2>
+                    <ul class=body>
+                    {% for file in files %}
+                    <li><a href="{{ url_for('show_misc', file=file) }}">{{file}}</a></li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </section>
+{% endblock %}
+

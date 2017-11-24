@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>{% if page %}{{ page|capitalize }} - {% endif %}3edgy6u.com</title>
+        <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
+        <link rel=icon href="{{ url_for('static', filename='favicon.png') }}">
+        {% if not config.DEBUG %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50076663-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-50076663-1');
+        </script>
+        {% endif %}
+    </head>
+    <body>
+{% include 'header.html' %}
+{% include 'sidebar.html' %}
+        <main>
+{% block content %}{% endblock %}
+        </main>
+{% include 'footer.html' %}
+    </body>
+</html>
+

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+            <h1>Projects</h1>
+            {% for project in projects %}
+            <article class=flex>
+                <div class=nierbox>
+                    <h2 class=title>{{ project.name }}</h2>
+                    <div class=body>
+                        {{ project.description }}<br>
+                        <a href="{{ project.url }}">{{ project.urlname }}</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+{% endblock %}
+

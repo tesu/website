@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+            <h1>{{ post.title }}</h1>
+            <blockquote class=timestamp>Posted on {{ post.timestamp|timestamp }}</blockquote>
+            <hr>
+{{ post.text|markdown|safe }}
+{% endblock %}
