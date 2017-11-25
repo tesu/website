@@ -135,7 +135,7 @@ def keybase():
 @app.errorhandler(405)
 @app.errorhandler(500)
 def page_not_found(e):
-    return render_template('error.html', api=get_api(), e=e), e.code
+    return render_template('error.html', api=get_api(), e=e, page='Error {}'.format(e.code)), e.code
 
 @app.template_filter('timestamp')
 def timestamp_filter(s):
@@ -168,7 +168,7 @@ def admin_only(f):
 @admin_only
 def new_post():
     if request.method == 'GET':
-        return render_template('newpost.html', api=False)
+        return render_template('newpost.html', api=False, page='New Post')
     slug = re.sub(r'[^a-z0-9-]','',re.sub(r'\s+','-',request.form['title'].lower()).strip('-'))
     db = get_db()
     db.execute('insert into posts (title, slug, text) values (?, ?, ?)',
@@ -184,7 +184,7 @@ def edit_post(slug):
         post = db.execute('select id, timestamp, title, slug, text from posts where slug == ?', [slug]).fetchone()
         if post is None:
             abort(404)
-        return render_template('editpost.html', api=False, post=post)
+        return render_template('editpost.html', api=False, post=post, page='Edit Post')
     db.execute('update posts set (title, slug, timestamp, text) = (?, ?, ?, ?) where slug==?',
             [request.form['title'], request.form['slug'], request.form['timestamp'], request.form['text'], slug])
     db.commit()

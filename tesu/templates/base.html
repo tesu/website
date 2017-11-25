@@ -3,9 +3,10 @@
     <head>
         <meta charset=utf-8>
         <meta name=viewport content="width=device-width, initial-scale=1">
-        <title>{% if page %}{{ page|title }} - {% endif %}3edgy6u.com</title>
+        <title>{% if page %}{{ page }} - {% endif %}3edgy6u.com</title>
         <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
         <link rel=icon href="{{ url_for('static', filename='favicon.png') }}">
+
         {% if not config.DEBUG %}
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50076663-1"></script>
         <script>
