@@ -68,7 +68,7 @@ def index(page=0):
     ppp = 5 # posts per page
     db = get_db()
     posts = db.execute('select timestamp, title, slug, text from posts order by id desc').fetchall()
-    return render_template('index.html', api=get_api(), page='index', posts=posts[page*ppp:page*ppp+ppp], newer=page-1, older=page+1 if (page+1)*ppp<len(posts) else -1)
+    return render_template('index.html', api=get_api(), page='Index', posts=posts[page*ppp:page*ppp+ppp], newer=page-1, older=page+1 if (page+1)*ppp<len(posts) else -1)
 
 @app.route('/blog/<slug>')
 def show_post(slug):
@@ -76,26 +76,26 @@ def show_post(slug):
     post = db.execute('select timestamp, title, slug, text from posts where slug == ?', [slug]).fetchone()
     if post is None:
         abort(404)
-    return render_template('post.html', api=False, page='index', post=post)
+    return render_template('post.html', api=False, page=post['title'], post=post)
 
 @app.route('/projects')
 def projects():
     db = get_db()
     projects = db.execute('select name, description, url, urlname from projects order by id asc').fetchall()
-    return render_template('projects.html', api=get_api(), page='projects', projects=projects)
+    return render_template('projects.html', api=get_api(), page='Projects', projects=projects)
 
 @app.route('/about')
 def about():
-    return render_template('about.html', api=get_api(), page='about')
+    return render_template('about.html', api=get_api(), page='About')
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html', api=get_api(), page='contact')
+    return render_template('contact.html', api=get_api(), page='Contact')
 
 @app.route('/misc/')
 def misc():
     files = [x for x in sorted(os.listdir(os.path.join(app.root_path, 'static/misc/'))) if '.html' in x]
-    return render_template('misc.html', api=get_api(), page='misc', files=files)
+    return render_template('misc.html', api=get_api(), page='Misc', files=files)
 
 @app.route('/misc/<file>')
 def show_misc(file):
