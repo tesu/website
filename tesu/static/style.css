@@ -305,6 +305,11 @@ footer hr {
     margin: 0 0 10px 50%;
 }
 
+footer p {
+    text-align: center;
+    font-size: .8em;
+}
+
 aside {
     float: right;
     width: 300px;
