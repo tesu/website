@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import datetime, functools, json, markdown, os, pickle, re, requests, sqlite3, subprocess, xml.etree.ElementTree as ET
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
@@ -30,8 +32,8 @@ def get_api():
                 g.api = pickle.load(f)
         except FileNotFoundError:
             g.api = update_api()
-        if (datetime.datetime.now() - g.api["time"]).total_seconds() > 10*60:
-            subprocess.Popen(['python3', '-c', 'import tesu.tesu; tesu.tesu.update_api()'], shell=False)
+        if (datetime.datetime.now() - g.api["time"]).total_seconds() > 10*60 and not app.config['DEBUG']:
+            subprocess.Popen(['python3', '-c', 'import tesu; tesu.update_api()'], shell=False)
     return g.api
 
 def update_api():
@@ -190,3 +192,6 @@ def edit_post(slug):
     db.commit()
     return redirect(url_for('show_post', slug=request.form['slug']))
 
+if __name__ == '__main__':
+    app.jinja_env.auto_reload = True
+    app.run(debug=True)
