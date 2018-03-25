@@ -106,7 +106,7 @@ def show_misc(file):
 @app.route('/py/<file>')
 def show_py(file):
     try:
-        m = __import__('tesu.scripts.{}'.format(file), fromlist=['x'])
+        m = __import__('scripts.{}'.format(file), fromlist=['x'])
     except Exception:
         abort(404)
     return m.run(request.args)
