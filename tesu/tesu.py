@@ -95,19 +95,19 @@ def about():
 
 @app.route('/about/webdev')
 def about_webdev():
-    return render_template('about/webdev.html', api=get_api(), page='About')
+    return render_template('about/webdev.html', api=get_api(), page='About', title='About Web Development')
 
 @app.route('/about/code')
 def about_code():
-    return render_template('about/code.html', api=get_api(), page='About')
+    return render_template('about/code.html', api=get_api(), page='About', title='About Programming')
 
 @app.route('/about/gaming')
 def about_gaming():
-    return render_template('about/gaming.html', api=get_api(), page='About')
+    return render_template('about/gaming.html', api=get_api(), page='About', title='About Gaming')
 
 @app.route('/about/anime')
 def about_anime():
-    return render_template('about/anime.html', api=get_api(), page='About')
+    return render_template('about/anime.html', api=get_api(), page='About', title='About Anime')
 
 @app.route('/contact')
 def contact():
