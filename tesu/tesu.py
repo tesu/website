@@ -90,6 +90,22 @@ def projects():
 def about():
     return render_template('about.html', api=get_api(), page='About')
 
+@app.route('/about/webdev')
+def about_webdev():
+    return render_template('about/webdev.html', api=get_api(), page='About')
+
+@app.route('/about/code')
+def about_code():
+    return render_template('about/code.html', api=get_api(), page='About')
+
+@app.route('/about/gaming')
+def about_gaming():
+    return render_template('about/gaming.html', api=get_api(), page='About')
+
+@app.route('/about/anime')
+def about_anime():
+    return render_template('about/anime.html', api=get_api(), page='About')
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html', api=get_api(), page='Contact')
