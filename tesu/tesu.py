@@ -70,7 +70,7 @@ def index(page=0):
     ppp = 5 # posts per page
     db = get_db()
     posts = db.execute('select timestamp, title, slug, text from posts order by id desc').fetchall()
-    return render_template('index.html', api=get_api(), page='Index', posts=posts[page*ppp:page*ppp+ppp], newer=page-1, older=page+1 if (page+1)*ppp<len(posts) else -1)
+    return render_template('index.html', api=get_api(), page='Blog', posts=posts[page*ppp:page*ppp+ppp], newer=page-1, older=page+1 if (page+1)*ppp<len(posts) else -1)
 
 @app.route('/blog/<slug>')
 def show_post(slug):
@@ -78,7 +78,7 @@ def show_post(slug):
     post = db.execute('select timestamp, title, slug, text from posts where slug == ?', [slug]).fetchone()
     if post is None:
         abort(404)
-    return render_template('post.html', api=False, page=post['title'], post=post)
+    return render_template('post.html', api=False, page='Blog', title=post['title'], post=post)
 
 @app.route('/projects')
 def projects():
