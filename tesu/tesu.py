@@ -6,6 +6,9 @@ from flask import Flask, request, session, g, redirect, url_for, abort, render_t
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
+
 app.config.update({
     'DATABASE': os.path.join(app.root_path,'app.db'),
     'STEAM_KEY': '',
