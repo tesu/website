@@ -207,6 +207,23 @@ def edit_post(slug):
     db.commit()
     return redirect(url_for('show_post', slug=request.form['slug']))
 
+@app.route('/projects/edit', methods=['GET','POST'])
+@admin_only
+def edit_projects():
+    db = get_db()
+    if request.method == 'GET':
+        projects = db.execute('select id, name, description, url, urlname from projects order by id asc').fetchall()
+        return render_template('admin/editprojects.html', api=False, page='Edit Projects', projects=projects)
+    if 'id' in request.form:
+        db.execute('update projects set (name, description, url, urlname) = (?, ?, ?, ?) where id==?',
+                [request.form['name'], request.form['description'], request.form['url'], request.form['urlname'], request.form['id']])
+    else:
+        db.execute('insert into projects (name, description, url, urlname) values (?, ?, ?, ?)',
+                [request.form['name'], request.form['description'], request.form['url'], request.form['urlname']])
+    db.commit()
+    return redirect(url_for('projects'))
+
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.run(debug=True)
+
