@@ -12,7 +12,6 @@ app.jinja_env.lstrip_blocks = True
 app.config.update({
     'DATABASE': os.path.join(app.root_path,'app.db'),
     'STEAM_KEY': '',
-    'MAL_UA': '',
     'LASTFM_KEY': '',
     'LASTFM_UA': '',
 })
