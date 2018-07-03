@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import datetime, functools, json, markdown, os, pickle, re, requests, sqlite3, subprocess, xml.etree.ElementTree as ET
+import datetime, functools, json, markdown, os, pickle, re, requests, sqlite3, subprocess
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
 app = Flask(__name__)
@@ -44,15 +44,9 @@ def update_api():
     r = requests.get("https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={}&steamid=76561198049007182&count=3&format=json".format(app.config['STEAM_KEY']))
     r = json.loads(r.text)
     o["steam"] = [(x["name"], round(x["playtime_2weeks"]/60,1)) for x in r["response"]["games"][:3]]
-    r = requests.get("https://myanimelist.net/rss.php?type=rwe&u=420anon", headers={"user-agent":app.config['MAL_UA']})
-    r = ET.fromstring(r.text)
-    o["mal"] = []
-    for i in r[0][3:]:
-        if all([i[0].text != x[0] for x in o["mal"]]):
-            m = re.findall(r'[0-9]+',i[3].text)
-            o["mal"] += [(i[0].text, '{}/{}'.format(str(m[0]),str(m[1])) if len(m) > 1 else '{}/?'.format(str(m[0])))]
-            if len(o["mal"]) > 2:
-                break
+    r = requests.post("https://graphql.anilist.co", json={"query": "query {Page (page: 0, perPage: 3) {mediaList (userId: 9920, type: ANIME, sort: FINISHED_ON_DESC) {progress media {episodes title {romaji}}}}}" })
+    r = json.loads(r.text)
+    o["mal"] = [(x["media"]["title"]["romaji"], '{}/{}'.format(str(x["progress"]), str(x["media"]["episodes"]))) for x in r["data"]["Page"]["mediaList"]]
     r = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=jason-lam&api_key={}&format=json".format(app.config['LASTFM_KEY']), headers={"user-agent":app.config['LASTFM_UA']})
     r = json.loads(r.text)
     o["lastfm"] = [(x["artist"]["#text"], x["name"]) for x in r["recenttracks"]["track"][:5]]
