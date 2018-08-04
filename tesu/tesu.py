@@ -34,7 +34,7 @@ def get_api():
                 g.api = pickle.load(f)
         except FileNotFoundError:
             g.api = update_api()
-        if (datetime.datetime.now() - g.api["time"]).total_seconds() > 10*60 and not app.config['DEBUG']:
+        if (datetime.datetime.now() - g.api["time"]).total_seconds() > 10*60 or app.config['DEBUG']:
             subprocess.Popen(['python3', '-c', 'import tesu; tesu.update_api()'], shell=False)
     return g.api
 
@@ -43,7 +43,7 @@ def update_api():
     r = requests.get("https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={}&steamid=76561198049007182&count=3&format=json".format(app.config['STEAM_KEY']))
     r = json.loads(r.text)
     o["steam"] = [(x["name"], round(x["playtime_2weeks"]/60,1)) for x in r["response"]["games"][:3]]
-    r = requests.post("https://graphql.anilist.co", json={"query": "query {Page (page: 0, perPage: 3) {mediaList (userId: 9920, type: ANIME, sort: FINISHED_ON_DESC) {progress media {episodes title {romaji}}}}}" })
+    r = requests.post("https://graphql.anilist.co", json={"query": "query {Page (page: 0, perPage: 3) {mediaList (userId: 9920, type: ANIME, sort: UPDATED_TIME_DESC) {progress media {episodes title {romaji}}}}}" })
     r = json.loads(r.text)
     o["mal"] = [(x["media"]["title"]["romaji"], '{}/{}'.format(str(x["progress"]), str(x["media"]["episodes"]))) for x in r["data"]["Page"]["mediaList"]]
     r = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=jason-lam&api_key={}&format=json".format(app.config['LASTFM_KEY']), headers={"user-agent":app.config['LASTFM_UA']})
