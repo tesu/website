@@ -97,6 +97,9 @@
     header input:checked ~ nav ul {
         display: block;
     }
+    .title .right {
+        display: none;
+    }
     .nierdialog p {
         visibility: hidden;
         width: 0;
