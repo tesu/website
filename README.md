@@ -1,2 +1,2 @@
-# 3edgy6u.com
+# jasonl.net
 My personal website.
