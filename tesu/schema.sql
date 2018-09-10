@@ -16,3 +16,24 @@ create table projects (
     urlname text default 'link'
 );
 
+drop table if exists sidebar_games;
+create table sidebar_games (
+    id integer primary key autoincrement,
+    name text not null,
+    hours real not null
+);
+
+drop table if exists sidebar_anime;
+create table sidebar_anime (
+    id integer primary key autoincrement,
+    name text not null,
+    progress text not null
+);
+
+drop table if exists sidebar_music;
+create table sidebar_music (
+    id integer primary key autoincrement,
+    artist text not null,
+    name text not null
+);
+

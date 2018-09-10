@@ -6,7 +6,7 @@
                     <span class=right>Hours</span>
                 </div>
                 <ul class=body>
-                {% for x in api['steam'] %}
+                {% for x in api['games'] %}
                     <li title="{{ x[0] }}">
                         <span class=left>{{ x[0] }}</span>
                         <span class=right>{{ x[1] }}</span>
@@ -20,7 +20,7 @@
                     <span class=right>Progress</span>
                 </div>
                 <ul class=body>
-                {% for x in api['mal'] %}
+                {% for x in api['anime'] %}
                     <li title="{{ x[0] }}">
                         <span class=left>{{ x[0] }}</span>
                         <span class=right>{{ x[1] }}</span>
@@ -31,7 +31,7 @@
             <div class=nierbox>
                 <div class=title>Recently Played Music</div>
                 <ul class=body>
-                {% for x in api['lastfm'] %}
+                {% for x in api['music'] %}
                     <li title="{{ x[0] }} - {{ x[1] }}">{{ x[0] }} - {{ x[1] }}</li>
                 {% endfor %}
                 </ul>

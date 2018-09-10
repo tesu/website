@@ -29,12 +29,13 @@ def get_db():
 
 def get_api():
     if not hasattr(g, 'api'):
-        try:
-            with app.open_resource('api.pkl') as f:
-                g.api = pickle.load(f)
-        except FileNotFoundError:
-            g.api = update_api()
-        if (datetime.datetime.now() - g.api["time"]).total_seconds() > 10*60 or app.config['DEBUG']:
+        db = get_db()
+        g.api = {
+            "games": db.execute('select name, hours    from sidebar_games order by id asc').fetchall(),
+            "anime": db.execute('select name, progress from sidebar_anime order by id asc').fetchall(),
+            "music": db.execute('select artist, name   from sidebar_music order by id asc').fetchall(),
+        }
+        if (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime('app.db'))).total_seconds() > 10*60 or app.config['DEBUG']:
             subprocess.Popen(['python3', '-c', 'import tesu; tesu.update_api()'], shell=False)
     return g.api
 
@@ -42,17 +43,27 @@ def update_api():
     o = {}
     r = requests.get("https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={}&steamid=76561198049007182&count=3&format=json".format(app.config['STEAM_KEY']))
     r = json.loads(r.text)
-    o["steam"] = [(x["name"], round(x["playtime_2weeks"]/60,1)) for x in r["response"]["games"][:3]]
+    games = [(x["name"], round(x["playtime_2weeks"]/60,1)) for x in r["response"]["games"][:3]]
+
     r = requests.post("https://graphql.anilist.co", json={"query": "query {Page (page: 0, perPage: 3) {mediaList (userId: 9920, type: ANIME, sort: UPDATED_TIME_DESC) {progress media {episodes title {romaji}}}}}" })
     r = json.loads(r.text)
-    o["mal"] = [(x["media"]["title"]["romaji"], '{}/{}'.format(str(x["progress"]), str(x["media"]["episodes"]))) for x in r["data"]["Page"]["mediaList"]]
+    anime = [(x["media"]["title"]["romaji"], '{}/{}'.format(str(x["progress"]), str(x["media"]["episodes"]))) for x in r["data"]["Page"]["mediaList"]]
+
     r = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=jason-lam&api_key={}&format=json".format(app.config['LASTFM_KEY']), headers={"user-agent":app.config['LASTFM_UA']})
     r = json.loads(r.text)
-    o["lastfm"] = [(x["artist"]["#text"], x["name"]) for x in r["recenttracks"]["track"][:5]]
-    o["time"] = datetime.datetime.now()
-    with open(os.path.join(app.root_path, 'api.pkl'), 'wb') as f:
-        pickle.dump(o, f)
-    return o
+    music = [(x["artist"]["#text"], x["name"]) for x in r["recenttracks"]["track"][:5]]
+
+    db = connect_db()
+    for i in range(len(games)):
+        db.execute('insert or replace into sidebar_games (id, name, hours) values (?, ?, ?)',
+            [i+1, games[i][0], games[i][1]])
+    for i in range(len(anime)):
+        db.execute('insert or replace into sidebar_anime (id, name, progress) values (?, ?, ?)',
+            [i+1, anime[i][0], anime[i][1]])
+    for i in range(len(music)):
+        db.execute('insert or replace into sidebar_music (id, artist, name) values (?, ?, ?)',
+            [i+1, music[i][0], music[i][1]])
+    db.commit()
 
 @app.teardown_appcontext
 def close_db(error):
