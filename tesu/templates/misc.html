@@ -6,7 +6,7 @@
                     <h2 class=title>Files</h2>
                     <ul class=body>
                     {% for file in files %}
-                    <li><a href="{{ url_for('show_misc', file=file) }}">{{file}}</a></li>
+                        <li><a href="{{ url_for('show_misc', file=file) }}">{{file}}</a></li>
                     {% endfor %}
                     </ul>
                 </div>
