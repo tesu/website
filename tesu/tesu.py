@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import datetime, functools, markdown, os, requests, sqlite3, subprocess
+import datetime, functools, markdown, os, re, requests, sqlite3, subprocess
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
 app = Flask(__name__)
