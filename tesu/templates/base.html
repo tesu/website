@@ -5,7 +5,15 @@
         <meta name=viewport content="width=device-width, initial-scale=1">
         <title>{% if title %}{{ title }}{% else %}{{ page }}{% endif %} - jasonl.net</title>
         <link rel=stylesheet href="{{ url_for('static', filename='style.css') }}">
-        <link rel=icon href="{{ url_for('static', filename='favicon.png') }}">
+        <link rel=apple-touch-icon href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+        <link rel=icon type=image/png sizes=32x32 href="{{ url_for('static', filename='favicon-32x32.png') }}">
+        <link rel=icon type=image/png sizes=16x16 href="{{ url_for('static', filename='favicon-16x16.png') }}">
+        <link rel=manifest href="{{ url_for('static', filename='site.webmanifest') }}">
+        <link rel=mask-icon color=#5bbad5 href="{{ url_for('static', filename='safari-pinned-tab.svg') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <meta name=msapplication-TileColor content=#d0cab2>
+        <meta name=msapplication-config content="{{ url_for('static', filename='browserconfig.xml') }}">
+        <meta name=theme-color content=#d0cab2>
 
         <meta property=og:title content="{{ page }}">
         <meta property=og:image content="https://jasonl.net{{ url_for('static', filename='ogimage.png') }}">
