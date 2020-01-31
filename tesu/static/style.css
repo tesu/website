@@ -114,7 +114,7 @@
 
     body::before {
         font-family: arial, helvetica, sans-serif;
-        content: ">printing websites in 2019";
+        content: ">printing websites in 2020";
         background-color: #D6DAF0 !important;
         color: #789922;
         -webkit-print-color-adjust: exact;
@@ -321,6 +321,11 @@ aside {
 
 main {
     margin: 0 30px 1em 30px;
+}
+
+main > p {
+    line-height: 1.6;
+    margin-bottom: 1em;
 }
 
 main ul {
