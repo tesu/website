@@ -41,7 +41,10 @@ def get_api():
 
 def update_api():
     r = requests.get("https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={}&steamid=76561198049007182&count=3&format=json".format(app.config['STEAM_KEY'])).json()
-    games = [(x["name"], round(x["playtime_2weeks"]/60,1)) for x in r["response"]["games"][:3]]
+    if "games" in r["response"]:
+        games = [(x["name"], round(x["playtime_2weeks"]/60,1)) for x in r["response"]["games"][:3]]
+    else:
+        games = []
 
     r = requests.post("https://graphql.anilist.co", json={"query": "query {Page (page: 0, perPage: 3) {mediaList (userId: 9920, type: ANIME, sort: UPDATED_TIME_DESC) {progress media {episodes title {romaji}}}}}" }).json()
     anime = [(x["media"]["title"]["romaji"], '{}/{}'.format(str(x["progress"]), str(x["media"]["episodes"]))) for x in r["data"]["Page"]["mediaList"]]
