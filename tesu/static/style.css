@@ -338,6 +338,25 @@ main img {
     margin: 0 auto;
 }
 
+.project {
+    max-width: 810px;
+}
+
+.project .body {
+    padding: 15px;
+}
+
+.project img {
+    padding: 0 0 1em 0;
+    filter: sepia(100%);
+    max-width: 100%;
+}
+
+.project img + p {
+    border-top: 2px solid var(--shadow);
+    padding: 1em 0 0 0;
+}
+
 .nierdialog {
     background-color: var(--light);
     border-left: 1em double var(--dark);

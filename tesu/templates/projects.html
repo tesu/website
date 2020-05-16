@@ -3,9 +3,10 @@
             <h1>Projects</h1>
             {% for project in projects %}
             <article class=flex>
-                <div class=nierbox>
+                <div class="nierbox project">
                     <h2 class=title>{{ project.name }}</h2>
                     <div class=body>
+                        <img src="{{ project.img }}">
                         <p>{{ project.description }}</p>
                         <p><a href="{{ project.url }}">{{ project.urlname }}</a></p>
                     </div>
