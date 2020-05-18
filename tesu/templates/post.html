@@ -4,4 +4,8 @@
             <blockquote class=timestamp>Posted on {{ post.timestamp|timestamp }}</blockquote>
             <hr>
 {{ post.text|markdown|safe }}
+            <div class=nierdialog>
+                <a class=right id=newer href=https://github.com/tesu/website/issues>Forum</a>
+                <p>Leave a comment or question.
+            </div>
 {% endblock %}
