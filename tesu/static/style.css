@@ -50,8 +50,28 @@
 }
 
 @media screen and (max-width: 900px) {
+    body {
+        display: flex;
+        flex-flow: column;
+    }
+    header {
+        order: 1;
+    }
+    main {
+        order: 2;
+    }
+    footer {
+        order: 3;
+    }
     aside {
+        width: auto !important;
+        order: 4;
+    }
+    aside div {
         display: none;
+    }
+    aside div:nth-last-child(1) {
+        display: block;
     }
 }
 
