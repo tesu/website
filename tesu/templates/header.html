@@ -3,11 +3,11 @@
             <label for=menu>Menu</label>
             <nav>
                 <ul>
-                    <li{% if page=='Blog' %} class=selected{% endif %}><a href="{{ url_for('index') }}">Blog</a></li>
-                    <li{% if page=='Projects' %} class=selected{% endif %}><a href="{{ url_for('projects') }}">Projects</a></li>
-                    <li{% if page=='About' %} class=selected{% endif %}><a href="{{ url_for('about') }}">About</a></li>
-                    <li{% if page=='Contact' %} class=selected{% endif %}><a href="{{ url_for('contact') }}">Contact</a></li>
-                    <li{% if page=='Misc' %} class=selected{% endif %}><a href="{{ url_for('misc') }}">Misc</a></li>
+                    <li{% if page=='Blog' %} class=selected{% endif %}><a href="{{ url_for('index') }}">Blog</a>
+                    <li{% if page=='Projects' %} class=selected{% endif %}><a href="{{ url_for('projects') }}">Projects</a>
+                    <li{% if page=='About' %} class=selected{% endif %}><a href="{{ url_for('about') }}">About</a>
+                    <li{% if page=='Contact' %} class=selected{% endif %}><a href="{{ url_for('contact') }}">Contact</a>
+                    <li{% if page=='Misc' %} class=selected{% endif %}><a href="{{ url_for('misc') }}">Misc</a>
                 </ul>
             </nav>
             <hr>
