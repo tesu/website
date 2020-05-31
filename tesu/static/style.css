@@ -343,7 +343,7 @@ main {
     margin: 0 30px 1em 30px;
 }
 
-main > p {
+main > p, main > ul {
     line-height: 1.6;
     margin-bottom: 1em;
 }
