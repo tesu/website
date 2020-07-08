@@ -458,6 +458,14 @@ ul.body a {
     float: right;
 }
 
+.addr {
+    font-family: monospace;
+}
+
+.addr::after {
+    content: "@jasonl.net";
+}
+
 #older::before, #newer::before {
     height: 22px;
     width: 22px;
