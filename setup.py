@@ -1,4 +1,4 @@
-from setuptools
+from setuptools import setup
 
 setup(
     name='tesu',
