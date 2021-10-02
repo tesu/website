@@ -128,26 +128,27 @@
 }
 
 @media print {
-    body {
-        background-color: white !important;
-        margin: auto;
-        width: 15em;
-    }
-
     body * {
         display: none !important;
     }
 
-    body::before {
-        font-family: arial, helvetica, sans-serif;
-        content: ">printing websites in 2020";
-        background-color: #D6DAF0 !important;
-        color: #789922;
+    body > *:nth-child(1) {
+        display: block !important;
+        background-color: #eef2ff !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
         color-adjust: exact;
-        padding: 2em;
-        line-height: 5em;
+        height: 980px;
+    }
+
+    body > *:nth-child(1)::before {
+        font-family: arial, helvetica, sans-serif;
+        font-size: 10pt;
+        content: ">printing websites in 2021";
+        background-color: #D6DAF0 !important;
+        color: #789922;
+        padding: 1em 40px 1em 40px;
+        line-height: 3em;
     }
 }
 
