@@ -32,8 +32,6 @@ def get_api():
         db = get_db()
         g.api = {
             "games": db.execute('select name, hours    from sidebar_games order by id asc').fetchall(),
-            "anime": db.execute('select name, progress from sidebar_anime order by id asc').fetchall(),
-            "music": db.execute('select artist, name   from sidebar_music order by id asc').fetchall(),
         }
         if (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime('app.db'))).total_seconds() > 10*60 or app.config['DEBUG']:
             subprocess.Popen(['python3', '-c', 'import tesu; tesu.update_api()'], shell=False)
@@ -46,22 +44,10 @@ def update_api():
     else:
         games = []
 
-    r = requests.post("https://graphql.anilist.co", json={"query": "query {Page (page: 0, perPage: 3) {mediaList (userId: 9920, type: ANIME, sort: UPDATED_TIME_DESC) {progress media {episodes title {romaji}}}}}" }).json()
-    anime = [(x["media"]["title"]["romaji"], '{}/{}'.format(str(x["progress"]), str(x["media"]["episodes"]))) for x in r["data"]["Page"]["mediaList"]]
-
-    r = requests.get("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=jason-lam&api_key={}&format=json".format(app.config['LASTFM_KEY']), headers={"user-agent":app.config['LASTFM_UA']}).json()
-    music = [(x["artist"]["#text"], x["name"]) for x in r["recenttracks"]["track"][:5]]
-
     db = connect_db()
     for i in range(len(games)):
         db.execute('insert or replace into sidebar_games (id, name, hours) values (?, ?, ?)',
             [i+1, games[i][0], games[i][1]])
-    for i in range(len(anime)):
-        db.execute('insert or replace into sidebar_anime (id, name, progress) values (?, ?, ?)',
-            [i+1, anime[i][0], anime[i][1]])
-    for i in range(len(music)):
-        db.execute('insert or replace into sidebar_music (id, artist, name) values (?, ?, ?)',
-            [i+1, music[i][0], music[i][1]])
     db.commit()
 
 @app.teardown_appcontext
