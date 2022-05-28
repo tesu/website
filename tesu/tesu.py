@@ -12,8 +12,6 @@ app.jinja_env.lstrip_blocks = True
 app.config.update({
     'DATABASE': os.path.join(app.root_path,'app.db'),
     'STEAM_KEY': '',
-    'LASTFM_KEY': '',
-    'LASTFM_UA': '',
 })
 app.config.from_pyfile('settings.cfg')
 
@@ -31,7 +29,7 @@ def get_api():
     if not hasattr(g, 'api'):
         db = get_db()
         g.api = {
-            "games": db.execute('select name, hours    from sidebar_games order by id asc').fetchall(),
+            "games": db.execute('select name, hours from sidebar_games order by id asc').fetchall(),
         }
         if (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime('app.db'))).total_seconds() > 10*60 or app.config['DEBUG']:
             subprocess.Popen(['python3', '-c', 'import tesu; tesu.update_api()'], shell=False)
