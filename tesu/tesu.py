@@ -100,6 +100,10 @@ def about_anime():
 def contact():
     return render_template('contact.html', api=get_api(), page='Contact')
 
+@app.route('/links')
+def links():
+    return render_template('links.html', api=get_api(), page='Links')
+
 @app.route('/misc/')
 def misc():
     files = [x for x in sorted(os.listdir(os.path.join(app.root_path, 'static/misc/'))) if '.html' in x]
