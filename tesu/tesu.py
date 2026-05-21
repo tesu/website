@@ -31,7 +31,7 @@ def get_api():
         g.api = {
             "games": db.execute('select name, hours from sidebar_games order by id asc').fetchall(),
         }
-        if (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime('app.db'))).total_seconds() > 10*60 or app.config['DEBUG']:
+        if (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getmtime(app.config['DATABASE']))).total_seconds() > 10*60 or app.config['DEBUG']:
             subprocess.Popen(['python3', '-c', 'import tesu; tesu.update_api()'], shell=False)
     return g.api
 
