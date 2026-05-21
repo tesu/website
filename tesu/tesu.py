@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime, functools, markdown, os, re, requests, sqlite3, subprocess
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, g, redirect, url_for, abort, render_template
 
 app = Flask(__name__)
 app.config.from_object(__name__)
